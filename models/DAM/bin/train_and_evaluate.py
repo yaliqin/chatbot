@@ -48,7 +48,7 @@ def train(conf, _model):
     print('build graph sucess')
     print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
 
-    with tf.Session(graph=_graph) as sess:
+    with tf.compat.v1.Session(graph=_graph) as sess:
         _model.init.run();
         if conf["init_model"]:
             _model.saver.restore(sess, conf["init_model"])

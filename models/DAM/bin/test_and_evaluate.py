@@ -37,8 +37,11 @@ def test(conf, _model):
     print('build graph sucess')
     print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
 
-    with tf.Session(graph=_graph) as sess:
+    with tf.compat.v1.Session(graph=_graph) as sess:
         #_model.init.run();
+       # _model.saver = tf.train.import_meta_graph("init_meta")
+        _model.saver = tf.compat.v1.train.import_meta_graph(conf["init_meta"])
+        print(_model.saver)
         _model.saver.restore(sess, conf["init_model"])
         print("sucess init %s" %conf["init_model"])
 
@@ -51,7 +54,7 @@ def test(conf, _model):
         print('starting test')
         print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
         for batch_index in range(test_batch_num):
-                
+            print(f"batch index is: {batch_index}")   
             feed = { 
                 _model.turns: test_batches["turns"][batch_index],
                 _model.tt_turns_len: test_batches["tt_turns_len"][batch_index],
@@ -64,6 +67,7 @@ def test(conf, _model):
             scores = sess.run(_model.logits, feed_dict = feed)
                     
             for i in range(conf["batch_size"]):
+               # print(f'inside batch index:{i}')
                 score_file.write(
                     str(scores[i]) + '\t' + 
                     str(test_batches["label"][batch_index][i]) + '\n')

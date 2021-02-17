@@ -30,8 +30,6 @@ def evaluate(file_path):
 
 	length = int(len(data)/10)
 	print(length)
-
-
 	for i in range(0, length):
 		ind = i * 10
 		assert data[ind][1] == 1

@@ -7,11 +7,10 @@ import pickle
 import tensorflow as tf
 import numpy as np
 
-import utils.reader as reader
 import utils.evaluation as eva
-save_path = "./output/ubuntu/DAM/",
+save_path = "./output/ubuntu/DAM/"
 
-score_file_path = save_path + 'score.test'
+score_file_path = save_path + "score.test"
 
 result = eva.evaluate(score_file_path)
 result_file_path = save_path + "result2.test"
