@@ -20,15 +20,18 @@ import bin.test_and_evaluate as test
 #checkpoint_path ="./output/ubuntu/DAM"
 #latest = tf.train.latest_checkpoint(checkpoint_path)
 
-data_path= "/home/ally/github/chatbot/data/"
+data_path =  "/Users/ally/Documents/12020Fall/data298/github/chatbot/data/"
 conf = {
-    #"data_path": "./data/ubuntu/data.pickle",
-    "data_path": data_path+"all_data.pickle",
-    #"save_path": "/home/ally/github/chatbot/data",
-    "save_path":data_path,
+    #"data_path": "./data/ubuntu/data.pkl",
+    "data_path": data_path+"data_split.pickle",
+    "train_path":data_path+"train.pickle",
+    "valid_path":data_path+"valid.pickle",
+    "test_path":data_path+"test.pickle",
+    #"save_path": "./output/ubuntu/temp/",
+    # "word_emb_init": "./data/word_embedding.pkl",
     "word_emb_init":None,
-    #"word_emb_init": data_path+"word_embedding.pkl",
-    "save_path": "./output/ubuntu/DAM/",
+
+    "save_path": data_path,
     #:    "init_model": "./output/ubuntu/DAM/DAM.ckpt.data-00000-of-00001", #should be set for test
     "init_meta":"./output/ubuntu/DAM/DAM.ckpt.meta",
     "init_model":"./output/ubuntu/DAM/DAM.ckpt",
@@ -67,6 +70,6 @@ model = net.Net(conf)
 train.train(conf, model)
 
 
-#test.test(conf, model)
+# test.test(conf, model)
 
 
