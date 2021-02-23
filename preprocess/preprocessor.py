@@ -106,7 +106,7 @@ def get_sequence_tokens(corpus, word_dict):
         context = []
         for i, block in enumerate(blocks):
             if i == 0:
-                sequence_tokens['y'].append(block)
+                sequence_tokens['y'].append(int(block))
             else:
                 tokens = text_to_word_sequence(block)
                 for j, word in enumerate(tokens):
@@ -137,9 +137,9 @@ if __name__ == '__main__':
     # dump_word_dict_to_json(word_dict)
     # sequence_tokens = get_sequence_tokens(corpus, word_dict)
     # dump_data_to_pkl(sequence_tokens, 'all_data')
-    with open('all_data.pickle', 'rb') as handle:
-        b = pickle.load(handle)
-    print(b)
+    # with open('original_data.pickle', 'rb') as handle:
+    #     b = pickle.load(handle)
+    # print(b)
 
 
     # for filename in glob.glob(os.path.join(file_path, '*.txt')):
