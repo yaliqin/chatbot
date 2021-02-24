@@ -23,6 +23,7 @@ def precision_at_position_1(sort_data):
     else:
         return 0
 
+# sort the attention result reverse and count the positive one in the k
 def recall_at_position_k_in_10(sort_data, k):
     sort_lable = [s_d[1] for s_d in sort_data]
     select_lable = sort_lable[:k]
