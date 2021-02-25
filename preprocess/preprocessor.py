@@ -118,6 +118,32 @@ def get_sequence_tokens(corpus, word_dict):
         sequence_tokens['c'].append(context)
     return sequence_tokens
 
+
+def get_sequence_tokens_with_turn(corpus, word_dict):
+# this function generate dataset as 'c','r','y', the multiple turns are split with 28270: __EOS__ to align with reader.py
+    sequence_tokens = {'y':[], 'c':[], 'r':[]}
+    for line in corpus:
+        blocks = line.split('\t')
+        context = []
+        for i, block in enumerate(blocks):
+            if i == 0:
+                sequence_tokens['y'].append(int(block))
+            elif i == len(blocks) - 1:
+                context.pop(-1)
+                sequence_tokens['c'].append(context)
+                tokens = text_to_word_sequence(block)
+                for j, word in enumerate(tokens):
+                    tokens[j] = word_dict[word]
+                sequence_tokens['r'].append(tokens)
+            else:
+                tokens = text_to_word_sequence(block)
+                for j, word in enumerate(tokens):
+                    tokens[j] = word_dict[word]
+                context.extend(tokens)
+                context.append(28270)
+
+    return sequence_tokens
+
 def generate_train_valid_test_data(sequence_tokens):
     # input: sequence_tokens dictionary
     # output: tuple of sequence_tokens dictionary, namely training, validation and test set
@@ -130,7 +156,7 @@ def dump_data_to_pkl(data, filename):
     with open(filename, 'wb') as handle:
         pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     # corpus = read_txt_file("all_data.txt")
     # texts = get_texts(corpus)
     # word_dict = generate_word_dict(texts)
