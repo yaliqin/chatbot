@@ -15,7 +15,7 @@ import numpy as np
 import itertools
 # from util import make_w2v_embeddings, split_and_zero_padding, ManDist
 
-def text_to_word_list(text):  # 文本分词
+def text_to_word_list(text): 
     text = str(text)
     text = text.lower()
 
@@ -55,18 +55,15 @@ def text_to_word_list(text):  # 文本分词
     return text
 
 
-def make_w2v_embeddings(word2vec, df, embedding_dim):  # 将词转化为词向量
-    vocabs = {}  # 词序号
-    vocabs_cnt = 0  # 词个数计数器
+def make_w2v_embeddings(word2vec, df, embedding_dim):  
+    vocabs = {}  
+    vocabs_cnt = 0  
 
-    vocabs_not_w2v = {}  # 无法用词向量表示的词
-    vocabs_not_w2v_cnt = 0  # 无法用词向量表示的词个数计数器
+    vocabs_not_w2v = {}  
+    vocabs_not_w2v_cnt = 0  
 
-    # 停用词
-    # stops = set(open('data/stopwords.txt').read().strip().split('\n'))
 
     for index, row in df.iterrows():
-        # 打印处理进度
         if index != 0 and index % 1000 == 0:
             print(str(index) + " sentences embedded.")
 
@@ -75,12 +72,10 @@ def make_w2v_embeddings(word2vec, df, embedding_dim):  # 将词转化为词向�
             words = text_to_word_list(row[question])
 
             for word in words:
-                # if word in stops:  # 去停用词
-                    # continue
-                if word not in word2vec and word not in vocabs_not_w2v:  # OOV的词放入不能用词向量表示的字典中，value为1
+                if word not in word2vec and word not in vocabs_not_w2v:  
                     vocabs_not_w2v_cnt += 1
                     vocabs_not_w2v[word] = 1
-                if word not in vocabs:  # 非OOV词，提取出对应的id
+                if word not in vocabs:  
                     vocabs_cnt += 1
                     vocabs[word] = vocabs_cnt
                     q2n.append(vocabs_cnt)
@@ -88,13 +83,8 @@ def make_w2v_embeddings(word2vec, df, embedding_dim):  # 将词转化为词向�
                     q2n.append(vocabs[word])
             df.at[index, question + '_n'] = q2n
 
-    embeddings = 1 * np.random.randn(len(vocabs) + 1, embedding_dim)  # 随机初始化一个形状为[全部词个数，词向量维度]的矩阵
-    '''
-    词1 [a1, a2, a3, ..., a60]
-    词2 [b1, b2, b3, ..., b60]
-    词3 [c1, c2, c3, ..., c60]
-    '''
-    embeddings[0] = 0  # 第一行用0填充，因为不存在index为0的词
+    embeddings = 1 * np.random.randn(len(vocabs) + 1, embedding_dim)  
+    embeddings[0] = 0  
 
     for index in vocabs:
         vocab_word = vocabs[index]
@@ -105,35 +95,29 @@ def make_w2v_embeddings(word2vec, df, embedding_dim):  # 将词转化为词向�
     return df, embeddings
 
 
-def split_and_zero_padding(df, max_seq_length):  # 调整tokens长度
+def split_and_zero_padding(df, max_seq_length): 
 
-    # 训练集矩阵转换成字典
     X = {'left': df['U_n'], 'right': df['R_n']}
 
-    # 调整到规定长度
     for dataset, side in itertools.product([X], ['left', 'right']):
         dataset[side] = pad_sequences(dataset[side], padding='pre', truncating='post', maxlen=max_seq_length)
 
     return dataset
 
 
-class ManDist(Layer):  # 封装成keras层的曼哈顿距离计算
+class ManDist(Layer):  
 
-    # 初始化ManDist层，此时不需要任何参数输入
     def __init__(self, **kwargs):
         self.result = None
         super(ManDist, self).__init__(**kwargs)
 
-    # 自动建立ManDist层
     def build(self, input_shape):
         super(ManDist, self).build(input_shape)
 
-    # 计算曼哈顿距离
     def call(self, x, **kwargs):
         self.result = K.exp(-K.sum(K.abs(x[0] - x[1]), axis=1, keepdims=True))
         return self.result
 
-    # 返回结果
     def compute_output_shape(self, input_shape):
         return K.int_shape(self.result)
 
@@ -165,18 +149,14 @@ assert X_train['left'].shape == X_train['right'].shape
 assert len(X_train['left']) == len(Y_train)
 
 def shared_model(_input):
-    # 词向量化
     embedded = Embedding(len(embeddings), embedding_dim, weights=[embeddings], input_shape=(max_seq_length,),
                          trainable=False)(_input)
 
-    # 多层Bi-LSTM
     activations = Bidirectional(LSTM(n_hidden, return_sequences=True), merge_mode='concat')(embedded)
     activations = Bidirectional(LSTM(n_hidden, return_sequences=True), merge_mode='concat')(activations)
 
-    # dropout
     activations = Dropout(0.5)(activations)
 
-    # Attention
     attention = TimeDistributed(Dense(1, activation='tanh'))(activations)
     attention = Flatten()(attention)
     attention = Activation('softmax')(attention)
@@ -185,17 +165,14 @@ def shared_model(_input):
     sent_representation = multiply([activations, attention])
     sent_representation = Lambda(lambda xin: K.sum(xin, axis=1))(sent_representation)
 
-    # dropout
     sent_representation = Dropout(0.1)(sent_representation)
 
     return sent_representation
 
 def shared_model_cnn(_input):
-    # 词向量化
     embedded = Embedding(len(embeddings), embedding_dim, weights=[embeddings], input_shape=(max_seq_length,),
                          trainable=False)(_input)
 
-    # CNN
     activations = Conv1D(250, kernel_size=5, activation='relu')(embedded)
     activations = GlobalMaxPool1D()(activations)
     activations = Dense(250, activation='relu')(activations)
@@ -206,7 +183,6 @@ def shared_model_cnn(_input):
 
 if __name__ == '__main__':
 
-    # 超参
     batch_size = 1024
     n_epoch = 9
     n_hidden = 50
@@ -216,8 +192,6 @@ if __name__ == '__main__':
     left_sen_representation = shared_model(left_input)
     right_sen_representation = shared_model(right_input)
 
-    # 引入曼哈顿距离，把得到的变换concat上原始的向量再通过一个多层的DNN做了下非线性变换、sigmoid得相似度
-    # 没有使用https://zhuanlan.zhihu.com/p/31638132中提到的马氏距离，尝试了曼哈顿距离、点乘和cos，效果曼哈顿最好
     man_distance = ManDist()([left_sen_representation, right_sen_representation])
     sen_representation = concatenate([left_sen_representation, right_sen_representation, man_distance])
     similarity = Dense(1, activation='sigmoid')(Dense(2)(Dense(4)(Dense(16)(sen_representation))))
