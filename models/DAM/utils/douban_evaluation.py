@@ -2,6 +2,9 @@ import sys
 import numpy as np
 from sklearn.metrics import average_precision_score
 
+# the positive: negative =1:1, set this value to 2,if p:n =1:9, set this value to 10
+PAIR_LEN = 2
+
 def mean_average_precision(sort_data):
     #to do
     count_1 = 0
@@ -51,21 +54,28 @@ def evaluate(file_path):
     total_num = 0
     with open(file_path, 'r') as infile:
         for line in infile:
-            if i % 10 == 0:
+            if i % PAIR_LEN == 0:
+            #if i % 10 == 0:
                 data = []
             
             tokens = line.strip().split('\t')
             data.append((float(tokens[0]), int(tokens[1])))
 
-            if i % 10 == 9:
+            if i % PAIR_LEN == PAIR_LEN-1:
+            # if i % 10 == 9:
                 total_num += 1
                 m_a_p, m_r_r, p_1, r_1, r_2, r_5 = evaluation_one_session(data)
                 sum_m_a_p += m_a_p
                 sum_m_r_r += m_r_r
                 sum_p_1 += p_1
-                sum_r_1 += r_1
-                sum_r_2 += r_2
-                sum_r_5 += r_5
+                if PAIR_LEN == 10:
+                    sum_r_1 += r_1
+                    sum_r_2 += r_2
+                    sum_r_5 += r_5
+                else:
+                    sum_r_1 = 0
+                    sum_r_2 = 0
+                    sum_r_5 = 0
 
             i += 1
 
