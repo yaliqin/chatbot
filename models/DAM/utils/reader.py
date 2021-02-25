@@ -1,6 +1,7 @@
 # import cPickle as pickle
 import pickle
 import numpy as np
+import os
 
 def unison_shuffle(data, seed=None):
     if seed is not None:
@@ -146,13 +147,22 @@ def build_batches(data, conf, turn_cut_type='tail', term_cut_type='tail'):
     return ans 
 
 if __name__ == '__main__':
+    data_path = "/Users/ally/Documents/12020Fall/data298/github/chatbot/data/"
+
     conf = { 
-        "batch_size": 256,
+        "batch_size": 64,
         "max_turn_num": 10, 
         "max_turn_len": 50, 
         "_EOS_": 28270,
+        "train_path": data_path + "train.pickle",
+        "valid_path": data_path + "valid.pickle",
+        "test_path": data_path + "test.pickle",
     }
-    train, val, test = pickle.load(open('../../data/data_small.pkl', 'rb'))
+    train = pickle.load(open(conf["train_path"],'rb'))
+    val = pickle.load(open(conf["valid_path"],'rb'))
+    test = pickle.load(open(conf["test_path"],'rb'))
+
+#    train, val, test = pickle.load(open(data_file, 'rb'))
     print('load data success')
     
     train_batches = build_batches(train, conf)
