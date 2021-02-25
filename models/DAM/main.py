@@ -33,9 +33,9 @@ conf = {
 
     "save_path": data_path,
     #:    "init_model": "./output/ubuntu/DAM/DAM.ckpt.data-00000-of-00001", #should be set for test
-    "init_meta":"./output/ubuntu/DAM/DAM.ckpt.meta",
-    "init_model":"./output/ubuntu/DAM/DAM.ckpt",
-
+    # "init_meta":"./output/ubuntu/DAM/DAM.ckpt.meta",
+    # "init_model":"./output/ubuntu/DAM/DAM.ckpt",
+    "init_model":"", # for local machine test
 
     "rand_seed": None, 
 
@@ -52,7 +52,7 @@ conf = {
     "learning_rate": 1e-3,
     "vocab_size": 9449,
     "emb_size": 200,
-    "batch_size": 256, #200 for test
+    "batch_size": 20, #200 for test
 
     "max_turn_num": 9,  
     "max_turn_len": 50, 
@@ -67,6 +67,7 @@ conf = {
 
 
 model = net.Net(conf)
+print(conf)
 train.train(conf, model)
 
 

@@ -2,6 +2,7 @@
 import pickle
 import numpy as np
 import os
+import math
 
 def unison_shuffle(data, seed=None):
     if seed is not None:
@@ -87,7 +88,7 @@ def build_one_batch(data, batch_index, conf, turn_cut_type='tail', term_cut_type
     _response_len = []
 
     _label = []
-
+    ## after this step, all the turns in one c are normalized to maximal length; all the c after normalization are append together.
     for i in range(conf['batch_size']):
         index = batch_index * conf['batch_size'] + i
         y, nor_turns_nor_c, nor_r, turn_len, term_len, r_len = produce_one_sample(data, index, conf['_EOS_'], conf['max_turn_num'],
@@ -99,7 +100,7 @@ def build_one_batch(data, batch_index, conf, turn_cut_type='tail', term_cut_type
         _every_turn_len.append(term_len)
         _tt_turns_len.append(turn_len)
         _response_len.append(r_len)
-
+    ## each batch data consists of batch size lists. Each element in this list is normalized list with normalized elements
     return _turns, _tt_turns_len, _every_turn_len, _response, _response_len, _label
 
 def build_one_batch_dict(data, batch_index, conf, turn_cut_type='tail', term_cut_type='tail'):
@@ -164,7 +165,15 @@ if __name__ == '__main__':
 
 #    train, val, test = pickle.load(open(data_file, 'rb'))
     print('load data success')
-    
+
+    # data batch includes below information:
+    # turns: the c parts, list of batch, each batch consists batch size list, in each list is the normalized turns
+    # tt_turns_len: corresponding to turns, consists the turn number  information of tokenized c
+    # every_turn leng: every turn length information
+    # response: normalized repsonse in batches. list of list. the first layer is each batch
+    # repsonse_len: each response tokenized length
+    # label: each y corresponding to c and r
+
     train_batches = build_batches(train, conf)
     val_batches = build_batches(val, conf)
     test_batches = build_batches(test, conf)
