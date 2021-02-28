@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # coding: utf-8
-# Author: lhy<lhy_in_blcu@126.com,https://huangyong.github.io>
 # Date: 21-02-01
 
 import os
