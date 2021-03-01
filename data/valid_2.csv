@@ -1,0 +1,199 @@
+flag,U,R
+1,How can I reset my password? I can’t remember my password.   Currently we do not have this facility. Users will need to contact the admin  How can I contact the admin? Can you give me the contact information?,"You can find the contact information in the webpage
+"
+0,How can I reset my password? I can’t remember my password.   Currently we do not have this facility. Users will need to contact the admin  How can I contact the admin? Can you give me the contact information?,"I don’t know
+"
+1,How can I reset my password? I can’t remember my password.   Currently we do not have this facility. Users will need to contact the admin  How can I contact the admin?,"Please  click the ‘CONTACT’ button in the left panel
+"
+0,How can I reset my password? I can’t remember my password.   Currently we do not have this facility. Users will need to contact the admin  How can I contact the admin? Can you give me the contact information?,"You can login with your username and password
+"
+1,I can’t login with my account and password.   Do you want to find your password?   Yes. Please reset my password.,"Please contact the administrator for that
+"
+0,I can’t login with my account and password.   Do you want to find your password?   Yes. Please reset my password.,"We can’t do that
+"
+1,I can’t login with my account and password.   Have you check your account and password?  Yes. I should have something wrong with my password.,"Yes. Please click the ‘CONTACT’ button in the left panel to contact the administrator
+"
+0,I can’t login with my account and password.   Have you check your account and password?  Yes. I should have something wrong with my password.,"I am sorry to hear that
+"
+1,"What kinds of AI applications can be tested by this tool? Can I test NLP applications?  Test cases can be generated for any type of application, but currently the application can have input type image only So I can’t test NLP applications. Is it right?","We will add the feature in future
+"
+0,"What kinds of AI applications can be tested by this tool? Can I test NLP applications?  Test cases can be generated for any type of application, but currently the application can have input type image only So I can’t test NLP applications. Is it right?","Test cases can be generated for any type of application
+"
+1,"What kinds of AI applications can be tested by this tool? Can I test OCR applications?  Test cases can be generated for any type of application, but currently the application can have input type image only So I can’t test NLP applications. Is it right?","We will add the feature in future
+"
+0,"What kinds of AI applications can be tested by this tool? Can I test OCR applications?  Test cases can be generated for any type of application, but currently the application can have input type image only So I can’t test NLP applications. Is it right?","Test cases can be generated for any type of application
+"
+1,"What functions are supported by the tool?  Input and context tree modeling,Test case modeling and Test case input modeling. What is test case modeling?","Generating Test Cases based on provided input and the context trees. With this feature, users can generate test cases for all the combination for the respective input and context trees
+"
+0,"What functions are supported by the tool?  Input and context tree modeling,Test case modeling and Test case input modeling. What is test case modeling?","I don’t know
+"
+0,"What functions are supported by the tool?  Input and context tree modeling,Test case modeling and Test case input modeling. What is test case modeling?","what do you mean
+"
+1,"What functions are supported by the tool?  Input and context tree modeling,Test case modeling and Test case input modeling. What is the difference between test case input modeling and input tree modeling?","In Input tree modeling we are defining the factors which need to be considered while testing a certain product.  We use this tree while defining the test case group and to generate the test cases Test Case Input modeling refers to Data/Input Data required for the test case. In this module, we are providing the user ability to add input data to the test case either manually or with the help of a web search engine
+"
+0,"What functions are supported by the tool?  Input and context tree modeling,Test case modeling and Test case input modeling. What is the difference between test case input modeling and input tree modeling?","No difference
+"
+1,What kinds of tests can be done with this tool?  All kinds of AI application.  Can functional and performance tests both be done?,"No. Only functional tests can be done
+"
+0,What kinds of tests can be done with this tool?  All kinds of AI application.  Can functional and performance tests both be done?,"What’s the performance test do you mean?
+"
+1,What kinds of tests can be done with this tool?  All kinds of AI application.  Can functional and performance tests both be done?,"Not really
+"
+0,What kinds of tests can be done with this tool?  All kinds of AI application.  Can functional and performance tests both be done?,"I don't know
+"
+1,What is the impact if the test tools are used by multiple users for different apps at the same time?  Currently the app is in the development stage. So the performance capabilities are limited and not supported. Do you mean only one user one application can be supported at one time?,"Yes. We plan to support it in later version
+"
+0,What is the impact if the test tools are used by multiple users for different apps at the same time?  Currently the app is in the development stage. So the performance capabilities are limited and not supported. Do you mean only one user one application can be supported at one time?,"We will issue new resources once core functionality is built.
+"
+1,What are the maximal test cases can be executed when the app performance is tested? Current the performance testing feature is not available. Can multiple test cases be executed then?,"No
+"
+0,What are the maximal test cases can be executed when the app performance is tested? Current the performance testing feature is not available. Do you mean only one test case can be executed every time?,"I am not sure
+"
+1,How can I use spanning trees in the dashboard?  We are in the process of reconfiguring the UI this feature will be removed  Do you suggest not to use this?,"Yes
+"
+1,How can I use spanning trees in the dashboard?  We are in the process of reconfiguring the UI this feature will be removed  Do you suggest not to use this?,"You can try it, but your usage may be interrupted during the usage
+"
+1,"How can I use the test case group function best?  Use  Group Name , Version, Sub-version fields to create different groups for the same application Understand, thanks","You are welcome
+"
+1,"How can I use the test case group function best?  Use  Group Name , Version, Sub-version fields to create different groups for the same application Got it. It’s the test cases organization method","Yes
+"
+1,How can I do the version control of the input and context classification input? Name the files accordingly and store multiple versions of the file. Also copy tree function is available What does copying tree for?,"It’s used to copy the whole content of current version for producing a new version by modification
+"
+0,How can I do the version control of the input and context classification input? Name the files accordingly and store multiple versions of the file. Also copy tree function is available What does copying tree for?,"I can’t answer
+"
+1,How can I do the version control of the input and context classification input? Name the files accordingly and store multiple versions of the file. Also copy tree function is available What does copying tree for?,"Copy tree is to copy the version
+"
+0,How can I do the version control of the input and context classification input? Name the files accordingly and store multiple versions of the file. Also copy tree function is available What does copying tree for?,"Copy tree is to copy the tree
+"
+1,How can I do the version control of the input and context classification input? Name the files accordingly and store multiple versions of the file. Also copy tree function is available Is there any naming convention?,"Currently no
+"
+1,How can I do the version control of the input and context classification input? Name the files accordingly and store multiple versions of the file. Also copy tree function is available Is there any naming convention for the file?,"No
+"
+0,How can I control the test cases number of each test case branch?  You can limit the number of test cases by limiting the number of nodes in input and context tree. Can I input the limitation number? ,"Alternatively, You can delete the extra test cases
+"
+1,How can I control the test cases number of each test case branch?  You can limit the number of test cases by limiting the number of nodes in input and context tree. Can I input the limitation number?,"Let me check
+"
+1,How can I control the test cases number of each test case branch?  You can limit the number of test cases by limiting the number of nodes in input and context tree. Can I input the limitation number?,"No
+"
+1,Where to check the test case execution status? currently this module is under development  Is there any plan?,"The release date is not determined yet
+"
+1,Where to check the test case execution status? currently this module is under development  Is there any plan?,"Yes, it will be delivered soon
+"
+1,Can multiple users modify the same application input and context classification input? No.  Can user use same login with currently with multiple browser?,"No, one user can’t login with multiple browser.
+"
+0,Can multiple users modify the same application input and context classification input? No.  Can user use same login with currently with multiple browser?,"Not sure
+"
+1,Can multiple users modify the same application input and context classification input? No.Also User should not use same login with currently with multiple browser. Will you support multi-user access later?,"There is no plan yet
+"
+0,Can multiple users modify the same application input and context classification input? No.Also User should not use same login with currently with multiple browser. Will you support multi-user access later?,"I don't know
+"
+1,Can multiple users modify the same application input and context classification input? No.Also User should not use same login with currently with multiple browser. Will you support multi-user access later?,"Let me check
+"
+1,Can the tool generate test cases for one app without input and context definition by users? No.  Is there template available for reference?,"No
+"
+1,Can the tool generate test cases for one app without input and context definition by users? No.  Is there some templates available for reference?,"We plan to do that later
+"
+0,Can the tool generate test cases for one app without input and context definition by users? No.  Is there some templates available for reference?,"I don’t know
+"
+1,Can multiple users share a project and work together? No. This feature will need to be developed. What’s the plan for it?,"It is not decided yet
+"
+0,Can multiple users share a project and work together? No. This feature will need to be developed. What’s the plan for it?,"I don't know
+"
+1,Can multiple users share a project and work together? No. This feature will need to be developed. It’s necessary for team cooperation.,"Yes, I agree
+"
+1,Can multiple users share a project and work together? No. This feature will need to be developed. It’s necessary for team cooperation.,"I understand
+"
+1,Can I set the test cases number for each test case branch?  No. It’s needed to simplify the work,"We have no plan for it yet
+"
+1,Can I set the test cases number for each test case branch?  No. It’s needed to simplify the work,"We will check it.
+"
+1,Can I set specific  execution time for the test cases? No Do you have a plan for this function?,"We have no plan for it yet
+"
+0,Can I set specific  execution time for the test cases? No Do you have a plan for this function?,"I don't understand
+"
+0,Can I set specific  execution time for the test cases? No Do you have a plan for this function?,"Sorry I don’t know
+"
+1,Can I set specific  execution time for the test cases? No I think it is very useful function if the test cases are huge and avoid workload traffic,"Understand
+"
+0,Can I set specific  execution time for the test cases? No I think it is very useful function if the test cases are huge and avoid workload traffic,"what do you mean
+"
+1,Can I set specific  execution time for the test cases? No I think it is very useful function if the test cases are huge and avoid workload traffic,"We will consider the schedule function
+"
+1,"Hello, how can I edit my nodes for input classification? Sure, you can edit or delete nodes. How many nodes can I add at most in one time? There is a ‘create 5 Nodes’ option to add five child nodes with default names. Then you can select the node to rename with appropriate values. Sounds great. How can I delete nodes from input classification?","Move mouse over the node. Right click on it and option to delete the node will be displayed.
+"
+0,"Hello, how can I edit my nodes for input classification? Sure, you can edit or delete nodes. How many nodes can I add at most in one time? There is a ‘create 5 Nodes’ option to add five child nodes with default names. Then you can select the node to rename with appropriate values. Sounds great. How can I delete nodes from input classification?","Yes. You can upload a JSON file.
+"
+1,"Hello, I can’t find the delete button for input classification nodes. Can you help me?Sure. Move mouse over the node. Right click on it and option to delete the node will be displayed. Can I add more nodes? Absolutely! There are two ways: First move your mouse over the node, right click then select ‘create child node’ option. A popup window will open. There is a plus(+) symbol on the popup window. With this you can add as many nodes required, then click create to add nodes to the tree. The second way is move your mouse over the node, right click then select ‘create 5 nodes’ option to add five child nodes with default names. Then select the node to rename with appropriate values. Thank you! Can I upload my input classification?","Yes. You can upload a JSON file.
+"
+0,"Hello, I can’t find the delete button for input classification nodes. Can you help me?Sure. Move mouse over the node. Right click on it and option to delete the node will be displayed. Can I add more nodes? Absolutely! There are two ways: First move your mouse over the node, right click then select ‘create child node’ option. A popup window will open. There is a plus(+) symbol on the popup window. With this you can add as many nodes required, then click create to add nodes to the tree. The second way is move your mouse over the node, right click then select ‘create 5 nodes’ option to add five child nodes with default names. Then select the node to rename with appropriate values. Thank you! Can I upload my input classification?","Sorry, we don’t have this option.
+"
+1,"Hello, I can’t find my testing cases? Can you help me? Yes, you can go to Login-> Get Started -> TEST CASE GROUP, then select appropriate test case group, scroll to right till you see the action column. Hover over each action button to see the description, click ‘View Test Cases’. Then you will be redirected to input test cases. Did I solve your problem? Yes, Thanks. Can I change the color of node?","Sorry, we don’t have this option.
+"
+0,"Hello, I can’t find my testing cases? Can you help me? Yes, you can go to Login-> Get Started -> TEST CASE GROUP, then select appropriate test case group, scroll to right till you see the action column. Hover over each action button to see the description, click ‘View Test Cases’. Then you will be redirected to input test cases. Did I solve your problem? Yes, Thanks. Can I change the color of node?","The tree should have only three levels. There is no limit on the number of nodes and child nodes. Higher the nodes more number of test cases will be generated.
+"
+1,How many nodes can I enter for my input classification? Are you asking about the tree? Yes.,"The tree should have only three levels. There is no limit on the number of nodes and child nodes. Higher the nodes more number of test cases will be generated.
+"
+0,How many nodes can I enter for my input classification? Are you asking about the tree? Yes.,"Sorry, we don’t have that option. But you can create a new node.
+"
+1,"How to delete nodes from input classification? You can mode mouse over the node. Right click on it and option to delete the node will be displayed. If I accidently delete the node, can I recover it?","Sorry, we don’t have that option. But you can create a new node.
+"
+0,"How to delete nodes from input classification? You can mode mouse over the node. Right click on it and option to delete the node will be displayed. If I accidently delete the node, can I recover it?","Sorry, we use JSON file to generate testing cases.
+"
+1,"How can I upload my input classification? Go to Login -> Get Started -> DATA ADMINISTRATION. Then select JSON file,  select file type ( Input, Context or Output), click submit. Thanks for you help. Can I upload an excel file?","Sorry, we use JSON file to generate testing cases.
+"
+0,"How can I upload my input classification? Go to Login -> Get Started -> DATA ADMINISTRATION. Then select JSON file,  select file type ( Input, Context or Output), click submit. Thanks for you help. Can I upload an excel file?","You need to go navigation: Login -> Get Started-> Data Administration with graph. Move mouse over the node.Right click on it and option to delete the node will be displayed.
+"
+1,Can I use input classification files as my content classification? Sure. Can I use my previous trees?,"Yes, no problem.
+"
+0,Can I use input classification files as my content classification? Sure. Can I use my previous trees?,"You need to go navigation: Login -> Get Started-> Data Administration with graph. Move mouse over the node.Right click on it and option to delete the node will be displayed.
+"
+1,I can find the way to delete nodes from classification? Are you asking about input classification? Yes,"You need to go navigation: Login -> Get Started-> Data Administration with graph. Move mouse over the node.Right click on it and option to delete the node will be displayed.
+"
+0,I can find the way to delete nodes from classification? Are you asking about input classification? Yes,"Sorry, we don't have this option right now. If you have more question, please contact admin.
+"
+1,"I don't know how to create a child node from input classification, Could you help me? Absolutely. Go to Login → Get Started → DATA ADMINISTRATION WITH GRAPH Move the mouse over the node.Right click on it and select “Create Child Node” option.A popup window will open. Add name for the node and click create. Do you have any more question?","No, Thanks for your help.
+"
+0,"I don't know how to create a child node from input classification, Could you help me? Absolutely. Go to Login → Get Started → DATA ADMINISTRATION WITH GRAPH Move the mouse over the node.Right click on it and select “Create Child Node” option.A popup window will open. Add name for the node and click create. Do you have any more question?","You need to go navigation: Login -> Get Started-> Data Administration with graph. Move mouse over the node.Right click on it and option to delete the node will be displayed.
+"
+1,"Can I add three nodes at once? Yes, you can right click, select 'create child node' option.A popup window will open. There is a plus(+) symbol on the popup window. With this you can add as many nodes required,then click create to add nodes to the tree. Can I change the node color?","Sorry, we don't have this option right now. If you have more question, please contact admin.
+"
+0,"Can I add three nodes at once? Yes, you can right click, select 'create child node' option.A popup window will open. There is a plus(+) symbol on the popup window. With this you can add as many nodes required,then click create to add nodes to the tree. Can I change the node color?","No, Thanks for your help.
+"
+1,I wasn't able to find my input classification file. Go to Login → Get Started → DATA ADMINISTRATION WITH GRAPH Select tree/file from dropdown list. Tree will be displayed. May I use input classification file as content classification?,"Yes, no problem.
+"
+0,I wasn't able to find my input classification file. Go to Login → Get Started → DATA ADMINISTRATION WITH GRAPH Select tree/file from dropdown list. Tree will be displayed. May I use input classification file as content classification?,"Sorry, we don't have this option right now. If you have more question, please contact admin.
+"
+1,What type of input classification file can I upload? JSON file Where can I check my testing tree?,"Go to  Login → Get Started → DATA ADMINISTRATION WITH GRAPH Select tree/file from dropdown list. Tree will be displayed.
+"
+0,What type of input classification file can I upload? JSON file Where can I check my testing tree?,"Move mouse over the node. Right click on it and option to delete the node will be displayed.
+"
+1,Is there any limitation for creating nodes for input classification? The tree should have only three levels. There is no limit on the number of nodes and child nodes. Higher the nodes more no of test cases will be generated.So if possible create trees with key values. Thanks. Can I use scratching input classification file.,"Sorry, we don't support this option. But you can upload your own JSON input classficiaction file.
+"
+0,Is there any limitation for creating nodes for input classification? The tree should have only three levels. There is no limit on the number of nodes and child nodes. Higher the nodes more no of test cases will be generated.So if possible create trees with key values. Thanks. Can I use scratching input classification file.,"Move mouse over the node. Right click on it and option to delete the node will be displayed.
+"
+1,How can I delete nodes from input classification? Move mouse over the node. Right click on it and option to delete the node will be displayed. Is there any limitation for creating nodes for input classification?,"The tree should have only three levels. There is no limit on the number of nodes and child nodes. Higher the nodes more no of test cases will be generated.So if possible create trees with key values.
+"
+0,How can I delete nodes from input classification? Move mouse over the node. Right click on it and option to delete the node will be displayed. Is there any limitation for creating nodes for input classification?,"Move mouse over the node. Right click on it and option to delete the node will be displayed.
+"
+1,"Hello, how can I edit my nodes for input classification? Sure, you can edit or delete nodes. How many nodes can I add at most in one time? There is a ‘create 5 Nodes’ option to add five child nodes with default names. Then you can select the node to rename with appropriate values. Sounds great. How can I delete nodes from input classification?","Move mouse over the node. Right click on it and option to delete the node will be displayed.
+"
+0,"Hello, how can I edit my nodes for input classification? Sure, you can edit or delete nodes. How many nodes can I add at most in one time? There is a ‘create 5 Nodes’ option to add five child nodes with default names. Then you can select the node to rename with appropriate values. Sounds great. How can I delete nodes from input classification?","The tree should have only three levels. There is no limit on the number of nodes and child nodes. Higher the nodes more no of test cases will be generated.So if possible create trees with key values.
+"
+1,"Can I add more nodes? Absolutely! There are two ways: First move your mouse over the node, right click then select ‘create child node’ option. A popup window will open. There is a plus(+) symbol on the popup window. With this you can add as many nodes required, then click create to add nodes to the tree. The second way is move your mouse over the node, right click then select ‘create 5 nodes’ option to add five child nodes with default names. Then select the node to rename with appropriate values. I can’t find the delete button for input classification nodes?","Move mouse over the node. Right click on it and option to delete the node will be displayed.
+"
+0,"Can I add more nodes? Absolutely! There are two ways: First move your mouse over the node, right click then select ‘create child node’ option. A popup window will open. There is a plus(+) symbol on the popup window. With this you can add as many nodes required, then click create to add nodes to the tree. The second way is move your mouse over the node, right click then select ‘create 5 nodes’ option to add five child nodes with default names. Then select the node to rename with appropriate values. I can’t find the delete button for input classification nodes?","Yes, no problem.
+"
+1,"Hi, I have a question: Can I change the color of nodes? Sorry, we don’t have this option. Do you know where I can find my input testing cases?","Yes, you can go to Login-> Get Started -> TEST CASE GROUP, then select appropriate test case group, scroll to right till you see the action column. Hover over each action button to see the description, click ‘View Test Cases’. Then you will be redirected to input test cases. Did I solve your problem?
+"
+0,"Hi, I have a question: Can I change the color of nodes? Sorry, we don’t have this option. Do you know where I can find my input testing cases?","Sorry, we don't have this option right now. If you have more question, please contact admin.
+"
+1,What type of input classification file can I upload? We accept JSON file. Can I use my previous tree.,"Sure. You can upload your own tree by using JSON file.
+"
+0,What type of input classification file can I upload? We accept JSON file. Can I use my previous tree.,"Go to  Login → Get Started → DATA ADMINISTRATION WITH GRAPH Select tree/file from dropdown list. Tree will be displayed.
+"
+1,"Can I recover deleted nodes? Sorry, we don’t have that option. But you can create a new node. How many nodes can I enter for my input classification?","The tree should have only three levels. There is no limit on the number of nodes and child nodes. Higher the nodes more number of test cases will be generated.
+"
+0,"Can I recover deleted nodes? Sorry, we don’t have that option. But you can create a new node. How many nodes can I enter for my input classification?","Sure. You can upload your own tree by using JSON file.
+"
+1,"I tried to upload a Jason file, where can I see my testing tree? Go to Login → Get Started → DATA ADMINISTRATION WITH GRAPH Select tree/file from dropdown list. Tree will be displayed. Can I delete nodes from input classification?","Sure. Navigation : Login → Get Started → DATA ADMINISTRATION WITH GRAPH Move mouse over the node.Right click on it and option to delete the node will be displayed
+"
