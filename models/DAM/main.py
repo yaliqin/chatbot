@@ -15,6 +15,8 @@ import utils.evaluation as eva
 
 import bin.train_and_evaluate as train
 import bin.test_and_evaluate as test
+import preprocess.preprocessor as preprocessor
+import utils.predict as predict
 
 # configure
 #checkpoint_path ="./output/ubuntu/DAM"
@@ -68,8 +70,21 @@ conf = {
 
 model = net.Net(conf)
 print(conf)
-train.train(conf, model)
+# train.train(conf, model)
 
+data_file = "../data/original_data2.txt"
+corpus = preprocessor.read_txt_file(data_file)
+texts = preprocessor.get_texts(corpus)
+word_dict = preprocessor.generate_word_dict(texts)
+
+all_positive_answers = predict.build_candidate_answers(corpus, word_dict)
+number_n_question = 1
+question = predict.build_question(corpus, number_n_question, word_dict)
+all_positive_data = predict.generate_data(question, all_positive_answers, word_dict)
+
+answer = test(conf, model, all_positive_data)
+print(f'for the question:{question}, the answer is: \n')
+print(answer)
 
 # test.test(conf, model)
 
