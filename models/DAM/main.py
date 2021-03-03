@@ -20,7 +20,7 @@ import bin.test_and_evaluate as test
 #checkpoint_path ="./output/ubuntu/DAM"
 #latest = tf.train.latest_checkpoint(checkpoint_path)
 
-data_path =  "/Users/ally/Documents/12020Fall/data298/github/chatbot/data/"
+data_path =  "../../data/"
 conf = {
     #"data_path": "./data/ubuntu/data.pkl",
     "data_path": data_path+"data_split.pickle",
@@ -33,9 +33,9 @@ conf = {
 
     "save_path": data_path,
     #:    "init_model": "./output/ubuntu/DAM/DAM.ckpt.data-00000-of-00001", #should be set for test
-    # "init_meta":"./output/ubuntu/DAM/DAM.ckpt.meta",
-    # "init_model":"./output/ubuntu/DAM/DAM.ckpt",
-    "init_model":"", # for local machine test
+    "init_meta":"/home/ally/DAM/output/ubuntu/DAM/DAM.ckpt.meta",
+    "init_model":"/home/ally/DAM/output/ubuntu/DAM/DAM.ckpt",
+    "init_model":data_path + "model.ckpt.15.0", # get the best model from train
 
     "rand_seed": None, 
 
@@ -68,9 +68,8 @@ conf = {
 
 model = net.Net(conf)
 print(conf)
-train.train(conf, model)
+#train.train(conf, model)
 
-
-# test.test(conf, model)
+test.test(conf, model)
 
 
