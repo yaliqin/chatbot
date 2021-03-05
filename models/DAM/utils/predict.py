@@ -28,20 +28,25 @@ def build_question(corpus, index, word_dict):
 
 def generate_data(question, positive_answers, word_dict):
     data_size = len(positive_answers)
-    all_positive_data = {'c':[],'r':[]}
+    all_positive_data = {'c':[],'r':[],'y':[]}
     if data_size == 0:
         return
     else:
-        question_token = preprocessor.get_sequence_tokens_with_turn(question, word_dict)
-        all_positive_data['r'].append(positive_answers)
-        questions = data_size * question_token
-        all_positive_data['c'].append(questions)
+#        question_token = preprocessor.get_sequence_tokens_with_turn(question, word_dict)
+        all_positive_data['r']= positive_answers
+        questions = data_size * [question]
+        all_positive_data['c'] = questions
+        flag = [1]*data_size
+        all_positive_data['y'] = flag
     return all_positive_data
 
 def evaluate_result(data):
     sort_data = sorted(data, key=lambda x: x[0], reverse=True)
+    score = data[:,0]
+    indexs = sorted(range(len(score)), key=lambda k: score[k])
     proposed_answer = sort_data[0][1]
-    return proposed_answer
+    index = indexs[0]
+    return proposed_answer, index
 
 def test(conf, _model, predict_data):
     if not os.path.exists(conf['save_path']):
@@ -98,7 +103,7 @@ def test(conf, _model, predict_data):
 
             for i in range(conf["batch_size"]):
                 score_file.write(str(scores[i]) + '\t' +
-                    str(test_batches["r"][batch_index][i]) + '\n')
+                    str(test_batches["response"][batch_index][i]) + '\n')
 
         score_file.close()
         print('finish test')
@@ -107,7 +112,7 @@ def test(conf, _model, predict_data):
             score_data = []
             for line in infile:
                 tokens = line.strip().split('\t')
-                score_data.append((float(tokens[0]), int(tokens[1])))
+                score_data.append((float(tokens[0]), tokens[1:]))
 
         # write evaluation result
         result = evaluate_result(score_data)
