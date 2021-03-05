@@ -10,6 +10,7 @@ def get_p_at_n_in_m(data, n, m, ind):
 	return 0;
 
 def evaluate(file_path):
+	print(file_path)
 	data = []
 	with open(file_path, 'r') as file:
 		for line in file:
