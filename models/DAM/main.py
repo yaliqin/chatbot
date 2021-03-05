@@ -72,20 +72,51 @@ model = net.Net(conf)
 print(conf)
 # train.train(conf, model)
 
-data_file = "../data/original_data2.txt"
+data_file = data_path+"original_data2.txt"
 corpus = preprocessor.read_txt_file(data_file)
 texts = preprocessor.get_texts(corpus)
 word_dict = preprocessor.generate_word_dict(texts)
+answers_text= []
+question_text = []
+positive_corpus =[]
+for item in corpus:
+    blocks = item.split('\t')
+    if(blocks[0]=='1'):
+        answers_text.append(([blocks[-1]]))
+        question_text.append((blocks[1:-1]))
+        positive_corpus.append(item)
+question_number = [1,10]
+all_positive_answers = predict.build_candidate_answers(positive_corpus, word_dict)
 
-all_positive_answers = predict.build_candidate_answers(corpus, word_dict)
-number_n_question = 1
-question = predict.build_question(corpus, number_n_question, word_dict)
-all_positive_data = predict.generate_data(question, all_positive_answers, word_dict)
+for item in question_number:
+    print(f'the {item} question is:{question_text[item]}')
+    print(f'the question of {item} question is:{answers_text[item]}')
+# with open(data_file, "r") as f:
+#     lines = f.readlines()
+#     for line in lines:
+#         blocks = line.split('\t')
+#         if(blocks[0]=='1'):
+#             answers_text.append([blocks[-1]])
+#     print(answers_text)
+# f.close()
 
-answer = test(conf, model, all_positive_data)
-print(f'for the question:{question}, the answer is: \n')
-print(answer)
 
+# with open(data_file, "r") as f:
+#     lines = f.readlines()
+#     print('the question is:')
+#     line = lines[number_n_question]
+#     blocks = line.split('\t')
+#     print(blocks[1:-1])
+# f.close()
+
+    question = predict.build_question(positive_corpus, item, word_dict)
+    all_positive_data = predict.generate_data(question, all_positive_answers, word_dict)
+
+    answer,index = predict.test(conf, model, all_positive_data)
+    print(f'answer index is {index}')
+    print(f'for the question:{question}, the answer is: \n')
+    print(answer)
+    print(all_positive_answers[index])
 # test.test(conf, model)
 
 
