@@ -70,7 +70,7 @@ def test(conf, _model, predict_data):
     # load data
     print('starting loading predict data')
     print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
-    #print(predict_data['c'][:10], predict_data['r'][:10])
+    print(predict_data['c'][:10], predict_data['r'][:10])
     print('finish loading data')
 
     test_batches = reader.build_batches(predict_data, conf)
@@ -99,6 +99,7 @@ def test(conf, _model, predict_data):
         step = 0
 
         score_file_path = conf['save_path'] + 'score_predict.test'
+        print('score file path')
         print(score_file_path)
         score_file = open(score_file_path, 'w')
 
@@ -116,7 +117,8 @@ def test(conf, _model, predict_data):
             }
 
             scores = sess.run(_model.logits, feed_dict=feed)
-
+            print('scores are listed:')
+            print((scores))
             for i in range(conf["batch_size"]):
                 score_file.write(str(scores[i]) + '\t' +
                     str(test_batches["response"][batch_index][i]) + '\n')
@@ -131,7 +133,7 @@ def test(conf, _model, predict_data):
                 tokens = line.strip().split('\t')
                 score_data.append((float(tokens[0]), tokens[1:]))
         print("score data for sorting")
-        #print(score_data)
+        print(score_data)
         # write evaluation result
         result,index = evaluate_result(score_data)
         return result,index
