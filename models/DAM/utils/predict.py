@@ -115,8 +115,8 @@ def test(conf, _model, predict_data):
                 score_data.append((float(tokens[0]), tokens[1:]))
 
         # write evaluation result
-        result = evaluate_result(score_data)
-        return result
+        result,index = evaluate_result(score_data)
+        return result,index
 
 
 # if __name__ == '__main__':

@@ -17,6 +17,7 @@ import bin.train_and_evaluate as train
 import bin.test_and_evaluate as test
 import preprocess.preprocessor as preprocessor
 import utils.predict as predict
+from random import sample
 
 # configure
 #checkpoint_path ="./output/ubuntu/DAM"
@@ -88,26 +89,36 @@ for item in corpus:
 question_number = [1,10]
 all_positive_answers = predict.build_candidate_answers(positive_corpus, word_dict)
 
+new_data = []
+data_length = len(positive_corpus)
+negative_data_length = 9
+index_list = list(range(data_length))
+for index in range(data_length):
+    new_data.append(positive_corpus[index])
+    negative_index_list = [n for n in index_list if n != index]
+    negative_indexs = sample(negative_index_list,negative_data_length)
+    for num in negative_indexs:
+        question = question_text[index]
+        question = ['\t'.join(question)]
+        question.append('\t')
+        flag = '0'+'\t'
+        negative_answer = answers_text[num]
+        s = question+negative_answer
+        s.insert(0,flag)
+        s1 = [''.join(s)]
+        new_data.append(s1[0])
+
+new_data_path = data_path + "new_data_10answers.txt"
+with open(new_data_path,'w') as f:
+    for item in new_data:
+        line = str(item)
+        f.write(line)
+    f.close()
+
 for item in question_number:
     print(f'the {item} question is:{question_text[item]}')
     print(f'the question of {item} question is:{answers_text[item]}')
-# with open(data_file, "r") as f:
-#     lines = f.readlines()
-#     for line in lines:
-#         blocks = line.split('\t')
-#         if(blocks[0]=='1'):
-#             answers_text.append([blocks[-1]])
-#     print(answers_text)
-# f.close()
 
-
-# with open(data_file, "r") as f:
-#     lines = f.readlines()
-#     print('the question is:')
-#     line = lines[number_n_question]
-#     blocks = line.split('\t')
-#     print(blocks[1:-1])
-# f.close()
 
     question = predict.build_question(positive_corpus, item, word_dict)
     all_positive_data = predict.generate_data(question, all_positive_answers, word_dict)
