@@ -1,4 +1,5 @@
-import preprocess.preprocessor as preprocessor
+#import preprocess.preprocessor as preprocessor
+import preprocessor
 import pickle
 from random import sample
 
@@ -122,7 +123,7 @@ def generate_candidate_answers(question, key_words_list, cls_indexs,question_tex
     s1 = [''.join(s)]
 
     negative_answers.append(s1[0])
-  return positive_answer, negative_answers
+  return positive_answer, negative_answers,negative_indexs
 
   # for index, question in corpus:
   #   negative_data_length = 9
