@@ -1,9 +1,12 @@
+
+import utils.reader as reader
+import models.net as net
+import sys
+sys.path.append("../../")
 import preprocess.preprocessor as preprocessor
 import os
 import time
 import tensorflow as tf
-import utils.reader
-import models.net as net
 
 def build_candidate_answers(corpus, word_dict):
     all_data_token = preprocessor.get_sequence_tokens_with_turn(corpus,word_dict)
@@ -41,12 +44,24 @@ def generate_data(question, positive_answers, word_dict):
     return all_positive_data
 
 def evaluate_result(data):
-    sort_data = sorted(data, key=lambda x: x[0], reverse=True)
-    score = data[:,0]
-    indexs = sorted(range(len(score)), key=lambda k: score[k])
-    proposed_answer = sort_data[0][1]
-    index = indexs[0]
-    return proposed_answer, index
+    scores = []
+    answers = []
+    for item in data:
+        scores.append(item[0])
+        answers.append(item[1])
+    max_score = max(scores)
+    max_score_index = scores.index(max_score)
+    print(max_score)
+    print(max_score_index)
+
+    #sort_data = sorted(data, key=lambda x: x[0], reverse=True)
+    #print(data)
+    #score = data[:,0]
+    #indexs = sorted(range(len(scores)), key=lambda k: score[k])
+    proposed_answer = answers[max_score_index]
+    #index = indexs[0]
+    #return proposed_answer, index
+    return proposed_answer, max_score_index
 
 def test(conf, _model, predict_data):
     if not os.path.exists(conf['save_path']):
@@ -84,6 +99,8 @@ def test(conf, _model, predict_data):
         step = 0
 
         score_file_path = conf['save_path'] + 'score_predict.test'
+        print('score file path')
+        print(score_file_path)
         score_file = open(score_file_path, 'w')
 
         print('starting test')
@@ -100,20 +117,23 @@ def test(conf, _model, predict_data):
             }
 
             scores = sess.run(_model.logits, feed_dict=feed)
-
+            print('scores are listed:')
+            print((scores))
             for i in range(conf["batch_size"]):
                 score_file.write(str(scores[i]) + '\t' +
                     str(test_batches["response"][batch_index][i]) + '\n')
+                print(str(scores[i]))
 
         score_file.close()
         print('finish test')
         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
-        with open(score_file, 'r') as infile:
+        with open(score_file_path, 'r') as infile:
             score_data = []
             for line in infile:
                 tokens = line.strip().split('\t')
                 score_data.append((float(tokens[0]), tokens[1:]))
-
+        print("score data for sorting")
+        print(score_data)
         # write evaluation result
         result,index = evaluate_result(score_data)
         return result,index
