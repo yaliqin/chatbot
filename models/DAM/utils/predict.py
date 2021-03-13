@@ -46,22 +46,33 @@ def generate_data(question, positive_answers, word_dict):
 def evaluate_result(data):
     scores = []
     answers = []
-    for item in data:
-        scores.append(item[0])
-        answers.append(item[1])
-    max_score = max(scores)
-    max_score_index = scores.index(max_score)
-    print(max_score)
-    print(max_score_index)
+    length = int(len(data) / 10)
+    print(length)
+    max_score_indexs =[]
+    prop_answers =[]
+    for i in range(0, length):
+        ind = i * 10
+        sub_data = data[ind:ind+10]
+        for item in sub_data:
+            scores.append(item[0])
+            answers.append(item[1])
+        max_score = max(scores)
+        max_score_index = scores.index(max_score)
+        print(max_score)
+        print(max_score_index)
+        proposed_answer = answers[max_score_index]
+
+        max_score_indexs.append(max_score_index)
+        prop_answers.append(proposed_answer)
 
     #sort_data = sorted(data, key=lambda x: x[0], reverse=True)
     #print(data)
     #score = data[:,0]
     #indexs = sorted(range(len(scores)), key=lambda k: score[k])
-    proposed_answer = answers[max_score_index]
     #index = indexs[0]
     #return proposed_answer, index
-    return proposed_answer, max_score_index
+    return(max_score_indexs,proposed_answer)
+#    return proposed_answer, max_score_index
 
 def test(conf, _model, predict_data):
     if not os.path.exists(conf['save_path']):
