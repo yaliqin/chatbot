@@ -132,8 +132,9 @@ def test(conf, _model, predict_data):
             for line in infile:
                 tokens = line.strip().split('\t')
                 score_data.append((float(tokens[0]), tokens[1:]))
-        print("score data for sorting")
-        print(score_data)
+        #print("score data for sorting")
+        #for item in score_data:
+        #    print(item)
         # write evaluation result
         result,index = evaluate_result(score_data)
         return result,index

@@ -125,6 +125,50 @@ def generate_candidate_answers(question, key_words_list, cls_indexs,question_tex
     negative_answers.append(s1[0])
   return positive_answer, negative_answers,negative_indexs
 
+def generate_all_candidate_answers(question, key_words_list, cls_indexs,question_text, answers_text):
+  # question: the current question
+  # key_words_list: input_classification, output_classification, context, process
+  # cls_indexs: the index of each classification problems, 4 elements list, each element is a list containing the index
+  # question_text: all questions
+  # answer_text: all questions
+  question_combine = ['\t'.join(question)]
+
+  for index, key_word in enumerate(key_words_list):
+    if key_word in question_combine:
+      answers_index = cls_indexs[index]
+      break
+    if index == 2: #belong to process questions
+      answers_index = cls_indexs[3]
+  question_index = question_text.index(question)
+  print(question_index)
+  # negative_data_length = 9
+  # negative_index_list = [n for n in answers_index if n != question_index]
+  # negative_indexs = sample(negative_index_list, negative_data_length)
+  negative_index_list = answers_index
+  negative_indexs = negative_index_list
+
+
+  # question = ['\t'.join(question)]
+  question_combine.append('\t')
+  flag = '0' + '\t'
+
+  negative_answer = []
+  # positive_answer = question_combine + answers_text[question_index]
+  # positive_flag = '1' +'\t'
+  # positive_answer.insert(0,positive_flag)
+  # positive_answer=[''.join(positive_answer)]
+  negative_answers = []
+  for num in negative_indexs:
+    negative_answer = answers_text[num]
+    s = question_combine + negative_answer
+    s.insert(0, flag)
+    s1 = [''.join(s)]
+
+    negative_answers.append(s1[0])
+  return negative_answers,negative_indexs
+
+
+
   # for index, question in corpus:
   #   negative_data_length = 9
   #   negative_index_list = [n for n in index_list if n != index]
