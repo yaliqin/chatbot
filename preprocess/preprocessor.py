@@ -156,9 +156,17 @@ def dump_data_to_pkl(data, filename):
     with open(filename, 'wb') as handle:
         pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-# if __name__ == '__main__':
-    # corpus = read_txt_file("all_data.txt")
-    # texts = get_texts(corpus)
+if __name__ == '__main__':
+    corpus = read_txt_file("../data/original_data2.txt")
+    texts = get_texts(corpus)
+    word_count = 0
+    dialog_count = 0
+    for line in texts:
+        dialog_count +=1
+        for text in line:
+            word_count +=1
+    print(word_count)
+    print(dialog_count)
     # word_dict = generate_word_dict(texts)
     # dump_word_dict_to_json(word_dict)
     # sequence_tokens = get_sequence_tokens(corpus, word_dict)

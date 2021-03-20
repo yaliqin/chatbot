@@ -143,6 +143,7 @@ def generate_all_candidate_answers(question, key_words_list, cls_indexs,question
   # negative_data_length = 9
   # negative_index_list = [n for n in answers_index if n != question_index]
   # negative_indexs = sample(negative_index_list, negative_data_length)
+  negative_index_list = answers_index
 
   negative_indexs = negative_index_list
 
