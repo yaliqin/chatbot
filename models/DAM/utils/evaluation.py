@@ -1,25 +1,26 @@
-import sys;
+import sys
 
 def get_p_at_n_in_m(data, n, m, ind):
-	pos_score = data[ind][0];
-	curr = data[ind:ind+m];
+	pos_score = data[ind][0]
+	curr = data[ind:ind+m]
 	curr = sorted(curr, key = lambda x:x[0], reverse=True)
 
 	if curr[n-1][0] <= pos_score:
-		return 1;
-	return 0;
+		return 1
+	return 0
 
 def evaluate(file_path):
+	print(file_path)
 	data = []
 	with open(file_path, 'r') as file:
 		for line in file:
-			line = line.strip();
+			line = line.strip()
 			tokens = line.split("\t")
 		
 			if len(tokens) != 2:
 				continue
 		
-			data.append((float(tokens[0]), int(tokens[1])));
+			data.append((float(tokens[0]), int(tokens[1])))
 		
 	#assert len(data) % 10 == 0
 	
