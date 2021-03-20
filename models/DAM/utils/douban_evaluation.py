@@ -79,10 +79,10 @@ def evaluate(file_path):
 
             i += 1
 
-    print('total num: %s' %total_num)
-    print('MAP: %s' %(1.0*sum_m_a_p/total_num))
-    print('MRR: %s' %(1.0*sum_m_r_r/total_num))
-    print('P@1: %s' %(1.0*sum_p_1/total_num))
+    #print('total num: %s' %total_num)
+    #print('MAP: %s' %(1.0*sum_m_a_p/total_num))
+    #print('MRR: %s' %(1.0*sum_m_r_r/total_num))
+    #print('P@1: %s' %(1.0*sum_p_1/total_num))
     return (1.0*sum_m_a_p/total_num, 1.0*sum_m_r_r/total_num, 1.0*sum_p_1/total_num, 
             1.0*sum_r_1/total_num, 1.0*sum_r_2/total_num, 1.0*sum_r_5/total_num)
 

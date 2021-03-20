@@ -15,19 +15,19 @@ import utils.evaluation as eva
 
 import bin.train_and_evaluate as train
 import bin.test_and_evaluate as test
-sys.path.append("../../preprocess")
-import preprocessor
-import generate_data
-#import preprocess.preprocessor as preprocessor
 import utils.predict as predict
-#import utils.generate_data as generate_data
+
+sys.path.append("../../")
+import preprocess.preprocessor as preprocessor
+import preprocess.generate_data as generate_data
+from random import sample
 
 # configure
 #checkpoint_path ="./output/ubuntu/DAM"
 #latest = tf.train.latest_checkpoint(checkpoint_path)
-
-data_path =  "/home/ally/github/chatbot/data/"
-result_path = "/home/ally/github/chatbot/models/DAM/results/"
+home_folder = "/home/ally/github/chatbot/"
+result_path = home_folder+"models/DAM/results/"
+data_path =  home_folder+"data/"
 conf = {
     #"data_path": "./data/ubuntu/data.pkl",
     "data_path": data_path+"classified_split.pickle",
@@ -74,8 +74,8 @@ conf = {
 
 
 model = net.Net(conf)
-#print(conf)
-#train.train(conf, model)
+print(conf)
+# train.train(conf, model)
 
 data_file = data_path+"all_classified_data.txt"
 corpus = preprocessor.read_txt_file(data_file)
@@ -96,68 +96,76 @@ print(cls_indexs)
 
 key_words_list = ["input classification", "output", "context"]
 
-question_number = [22]
-#all_positive_answers = predict.build_candidate_answers(positive_corpus, word_dict)
-#
-for index in question_number:
-    print(f'the {index} question is:{question_text[index]}')
-    question = question_text[index]
-    positive_answer, negative_answers,negative_index_list = generate_data.generate_candidate_answers(question, key_words_list, cls_indexs, question_text, answers_text)
-    all_data = []
-    all_data.append(positive_answer[0])
-    print(positive_answer[0])
-    for item in negative_answers:
-      all_data.append(item)
-      print(item)
-#      print("\n")
-#    print(f'all_data is {all_data}')
-    print("*********************************************\n")
-
-#    #print(f'the question of {item} question is:{answers_text[item]}')
-#
-#    texts = preprocessor.get_texts(all_data)
-    text_data_classified = preprocessor.get_sequence_tokens_with_turn(all_data,word_dict)
-    print(text_data_classified)
-#    question = predict.build_question(positive_corpus, item, word_dict)
-#    all_positive_data = predict.generate_data(question, all_positive_answers, word_dict)
-#
-    answer,answer_index = predict.test(conf, model, text_data_classified)
-    negative_index_list.insert(0,index)
-    print(f'candiate answers index:{negative_index_list}')
-    print(f'answer index is {index} in the classification list')
-    print(f'for the question:{question}, the answer is: \n')
-    print(answer)
-
-    print(answers_text[negative_index_list[answer_index]])
-
-print("*************************blind candiates*************")
+question_number = [30,32,33,60,62,63, 8,9,10,92,93,94]
+######## start test#############
+#structure_data_file = data_path + "all_classified_data.txt"
+#corpus2 = preprocessor.read_txt_file(structure_data_file)
+#test_data = []
+#test_data_index = 0
 #for index in question_number:
-#    print(f'the {index} question is:{question_text[index]}')
-#    question = question_text[index]
-#    negative_answers, negative_answers_index = generate_data.generate_all_candidate_answers(question, key_words_list, cls_indexs, question_text, answers_text)
-#    all_data = []
-#    for item in negative_answers:
-#      all_data.append(item)
-#      print(item)
-#      print("\n")
-#    print(f'all_data is {all_data}')
-#    print("*********************************************\n")
+#    start = index * 10
+#    end = index*10+10
+#    test_data[test_data_index:test_data_index+10]=corpus2[start:end]
+#    test_data_index +=10
+#    # test_data.append(corpus2[start:end])
+##print(f'all_data is {all_data}')
+#print("*********************************************\n")
 #
 ##    #print(f'the question of {item} question is:{answers_text[item]}')
 ##
 ##    texts = preprocessor.get_texts(all_data)
-#    text_data_classified = preprocessor.get_sequence_tokens_with_turn(all_data,word_dict)
-#    print(text_data_classified)
+#text_data_classified = preprocessor.get_sequence_tokens_with_turn(test_data,word_dict)
+##print(text_data_classified)
 ##    question = predict.build_question(positive_corpus, item, word_dict)
 ##    all_positive_data = predict.generate_data(question, all_positive_answers, word_dict)
 ##
-#    answer,index = predict.test(conf, model, text_data_classified)
-#    print(f'answer index is {index} in the classification list')
-#    #print(f'for the question:{question}, the answer is: \n')
-##    #print(answer)
-#    print(answers_text[index])
+#indexs,answers = predict.test(conf, model, text_data_classified)
+#print(indexs)
+#ind = 0
+#for index,number in enumerate(question_number):
+#    print(f'question number is: {number}')
+#    print(f'question is: {question_text[number]}')
+#    print(f'answer index is {indexs[index]} in the classification list')
+#    idx_in_all = ind*10+indexs[index]
+#    answer_data = test_data[idx_in_all]
+#    this_answer = answer_data.split('\t')[-1]
+#    print(f'anwer is: {this_answer}')
+#    ind += 1
 #
+######## end test#############
 
-# test.test(conf, model)
+#question_number = [60]
+#all_positive_answers = predict.build_candidate_answers(positive_corpus, word_dict)
+#
+all_data = []
+for index in question_number:
+#    print(f'the {index} question is:{question_text[index]}')
+    question = question_text[index]
+    positive_answer, negative_answers, negative_answers_index = generate_data.generate_candidate_answers(question, key_words_list, cls_indexs, question_text, answers_text)
+    negative_answers_index.insert(0, index)
+    all_data.append(positive_answer[0])
+#    print(positive_answer[0])
+    for item in negative_answers:
+      all_data.append(item)
+#      print(item)
 
-
+text_data_classified = preprocessor.get_sequence_tokens_with_turn(all_data,word_dict)
+indexs,answers = predict.test(conf, model, text_data_classified)
+print(indexs)
+ind = 0
+for index,number in enumerate(question_number):
+    print(f'question number is: {number}')
+    print(f'question is: {question_text[number]}')
+    print(f'answer index is {indexs[index]} in the classification list')
+    idx_in_all = ind*10+indexs[index]
+    print(idx_in_all)
+    answer_data = all_data[idx_in_all]
+    this_answer = answer_data.split('\t')[-1]
+    print(f'anwer is: {this_answer}')
+    ind += 1
+#
+#
+##
+## # test.test(conf, model)
+#
+#

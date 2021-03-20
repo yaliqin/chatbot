@@ -1,5 +1,5 @@
-#import preprocess.preprocessor as preprocessor
-import preprocessor
+import preprocess.preprocessor as preprocessor
+#import preprocessor
 import pickle
 from random import sample
 
@@ -145,8 +145,6 @@ def generate_all_candidate_answers(question, key_words_list, cls_indexs,question
   # negative_index_list = [n for n in answers_index if n != question_index]
   # negative_indexs = sample(negative_index_list, negative_data_length)
   negative_index_list = answers_index
-  negative_indexs = negative_index_list
-
 
   # question = ['\t'.join(question)]
   question_combine.append('\t')

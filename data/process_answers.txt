@@ -28,6 +28,7 @@ Our system doesn't have nodes limitationn.
 Our system doesn't provide recovery.
 Delete action is hard delete. I.e., you cannot view the test case once deleted.
 No, delete action is hard delete.
+No. Currently we do not have this facility.
 I am sorry. Users are not allowed to do that directly. Nodes and child Nodes are sorted based on name (A-Z) after each action (add, delete and rename).
 Actually, there is no restrictions. However, more nodes will take more time to generate test cases and modeling inputs.
 No problem. Just let you know, when you rename a node, the order of nodes will be automatically sorted by new name (A-Z).

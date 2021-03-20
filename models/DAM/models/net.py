@@ -27,7 +27,7 @@ class Net(object):
             # Ally: end of change
         else:
             self._word_embedding_init = None
-
+        self.embedded = 0
     def build_graph(self):
         with self._graph.as_default():
             if self._conf['rand_seed'] is not None:
@@ -41,12 +41,14 @@ class Net(object):
             else:
                 word_embedding_initializer = tf.compat.v1.random_normal_initializer(stddev=0.1)
 
-            self._word_embedding = tf.compat.v1.get_variable(
-                name='word_embedding',
-                shape=[self._conf['vocab_size']+1, self._conf['emb_size']],
-                dtype=tf.float32,
-                initializer=word_embedding_initializer)
-
+            if self.embedded == 0 :
+                
+                self._word_embedding = tf.compat.v1.get_variable(
+                    name='word_embedding',
+                    shape=[self._conf['vocab_size']+1, self._conf['emb_size']],
+                    dtype=tf.float32,
+                    initializer=word_embedding_initializer)
+                self.embedded = 1
 
             #define placehloders
             self.turns = tf.compat.v1.placeholder(
