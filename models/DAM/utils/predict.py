@@ -71,8 +71,8 @@ def evaluate_result(data):
     #indexs = sorted(range(len(scores)), key=lambda k: score[k])
     #index = indexs[0]
     #return proposed_answer, index
-    return(max_score_indexs,proposed_answer)
-#    return proposed_answer, max_score_index
+#    return(max_score_indexs,proposed_answer)
+    return prop_answers, max_score_indexs
 
 def test(conf, _model, predict_data):
     if not os.path.exists(conf['save_path']):
@@ -147,7 +147,7 @@ def test(conf, _model, predict_data):
         print(score_data)
         # write evaluation result
         result,index = evaluate_result(score_data)
-        return result,index
+        return index,result
 
 
 # if __name__ == '__main__':
