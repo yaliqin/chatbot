@@ -143,7 +143,6 @@ def generate_all_candidate_answers(question, key_words_list, cls_indexs,question
   # negative_data_length = 9
   # negative_index_list = [n for n in answers_index if n != question_index]
   # negative_indexs = sample(negative_index_list, negative_data_length)
-  negative_index_list = answers_index
 
   negative_indexs = negative_index_list
 
@@ -167,6 +166,29 @@ def generate_all_candidate_answers(question, key_words_list, cls_indexs,question
     negative_answers.append(s1[0])
   return negative_answers,negative_indexs
 
+
+
+  # for index, question in corpus:
+  #   negative_data_length = 9
+  #   negative_index_list = [n for n in index_list if n != index]
+  #   negative_indexs = sample(negative_index_list, negative_data_length)
+  #   for num in negative_indexs:
+  #     question = question_text[index]
+  #     question = ['\t'.join(question)]
+  #     question.append('\t')
+  #     flag = '0' + '\t'
+  #     negative_answer = answers_text[num]
+  #     s = question + negative_answer
+  #     s.insert(0, flag)
+  #     s1 = [''.join(s)]
+  #     new_data.append(s1[0])
+  #
+  # new_data_path = data_path + "new_data_10answers.txt"
+  # with open(new_data_path, 'w') as f:
+  #   for item in new_data:
+  #     line = str(item)
+  #     f.write(line)
+  #   f.close()
 
 
 

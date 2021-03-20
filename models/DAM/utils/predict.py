@@ -58,10 +58,11 @@ def evaluate_result(data):
             answers.append(item[1])
         max_score = max(scores)
         max_score_index = scores.index(max_score)
-        print(max_score)
-        print(max_score_index)
+        print(f"max score is: {max_score}")
+        print(f"max_score_index is {max_score_index}")
         proposed_answer = answers[max_score_index]
-
+        scores = []
+        answers=[]
         max_score_indexs.append(max_score_index)
         prop_answers.append(proposed_answer)
 
@@ -72,7 +73,7 @@ def evaluate_result(data):
     #index = indexs[0]
     #return proposed_answer, index
 #    return(max_score_indexs,proposed_answer)
-    return prop_answers, max_score_indexs
+    return max_score_indexs, prop_answers
 
 def test(conf, _model, predict_data):
     if not os.path.exists(conf['save_path']):
@@ -143,10 +144,11 @@ def test(conf, _model, predict_data):
             for line in infile:
                 tokens = line.strip().split('\t')
                 score_data.append((float(tokens[0]), tokens[1:]))
-        print("score data for sorting")
-        print(score_data)
+        #print("score data for sorting")
+        #for item in score_data:
+        #    print(item)
         # write evaluation result
-        result,index = evaluate_result(score_data)
+        index,result = evaluate_result(score_data)
         return index,result
 
 

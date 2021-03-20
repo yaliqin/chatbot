@@ -19,7 +19,7 @@ valid_df = pd.read_csv("/Users/wenyaxie/Downloads/valid.csv")
 valid_df['U_n'] = [[] for _ in range(len(valid_df.index))]
 valid_df['R_n'] = [[] for _ in range(len(valid_df.index))]
 
-after_train_df = train_df.loc[train_df['flag'] == 1] # Used for finding a match for given user input
+after_train_df = train_df.loc[train_df['flag'] == 1]  # Used for finding a match for given user input
 answers = []
 for index, row in after_train_df.iterrows():
     answers.append(row['R'])
@@ -112,7 +112,7 @@ if __name__ == '__main__':
                                validation_data=([X_validation['left'], X_validation['right']], Y_validation))
     training_end_time = time()
     print("Training time finished.\n%d epochs in %12.2f" % (n_epoch, training_end_time - training_start_time))
-    
+
     user_input = "How can I reset my password? I can’t remember my password.   Currently we do not have this facility. Users will need to contact the admin  How can I contact the admin? Can you give me the contact information?"
     replaced_df = after_train_df.copy()
     for index, row in replaced_df.iterrows():
