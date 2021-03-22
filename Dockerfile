@@ -16,13 +16,13 @@ COPY ./requirements.txt ./requirements.txt
 RUN pip3 install -r ./requirements.txt
 
 RUN mkdir -p models/DAM
-COPY models/DAM/* ./models/DAM
+COPY models/DAM/* ./models/DAM/
 
 RUN mkdir data
-COPY data/* ./data
+COPY data/* ./data/
 
-RUN mkdir /preprocess
-COPY preprocess/* ./preprocess
+RUN mkdir -p preprocess
+COPY preprocess/* ./preprocess/
 
 #ENTRYPOINT [ "python3" ]
 
