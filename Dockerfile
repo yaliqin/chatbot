@@ -5,7 +5,7 @@ MAINTAINER Yali Qin "qinyali@gmail.com"
 RUN apt-get update -y && \
     apt-get install -y python3-pip python3-dev
 
-RUN mkdir /home/ally/github/chatbot
+RUN mkdir -p /home/ally/github/chatbot
 
 WORKDIR /home/ally/github/chatbot
 
