@@ -26,5 +26,5 @@ COPY preprocess/* ./preprocess/
 
 
 #ENTRYPOINT [ "python3" ]
-
-CMD ["sh","-c","models/DAM/run.sh" ]
+RUN cd models/DAM
+CMD ["sh","-c","run.sh" ]
