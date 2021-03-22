@@ -7,6 +7,8 @@ import os
 import time
 import pickle
 import tensorflow as tf
+# disable tensorflow debug information
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 import numpy as np
 
 import utils.reader as reader
@@ -102,7 +104,7 @@ def prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,wor
         #    print(positive_answer[0])
         for item in negative_answers:
             all_data.append(item)
-    #      print(item)
+        print(all_data)
     text_data_classified = preprocessor.get_sequence_tokens_with_turn(all_data, word_dict)
     indexs, answers = predict.test(conf, model, text_data_classified)
     print(indexs)
