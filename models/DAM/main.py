@@ -73,6 +73,7 @@ conf = {
 }
 
 MODEL_INTEGRATION = 0
+MULTI_TIMES = 0
 
 def prepare_data(data_path):
     data_file = data_path+"all_classified_data.txt"
@@ -153,22 +154,25 @@ print(conf)
 
 test_questions=[""]
 
-if MODEL_INTEGRATION == 0:
-    key_words_list = ["input classification", "output", "context"]
-    question_number = [30,32,33,60,62,63, 8,9,10,92,93,94]
-    cls_indexs, question_text, answers_text,word_dict = prepare_data(data_path)
-    indexs = prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict)
-    pop_answers(indexs,question_text,question_number)
+if MULTI_TIMES == 1:
+
 else:
-    cls_indexs, question_text, answers_text,word_dict = prepare_data(data_path)
-    print(f'question is:{user_questions}')
-    questions = bilstm(user_questions)
-    q_a_set = build_bilstm_qa(questions, question_text, answers_text)
-    text_data_classified = preprocessor.get_sequence_tokens_with_turn(q_a_set, word_dict)
-    indexs, answers = predict.test(conf, model, text_data_classified)
-    answer_data = q_a_set[indexs]
-    this_answer = answer_data.split('\t')[-1]
-    print(f'answer is: {this_answer}')
+    if MODEL_INTEGRATION == 0:
+        key_words_list = ["input classification", "output", "context"]
+        question_number = [30,32,33,60,62,63, 8,9,10,92,93,94]
+        cls_indexs, question_text, answers_text,word_dict = prepare_data(data_path)
+        indexs = prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict)
+        pop_answers(indexs,question_text,question_number)
+    else:
+        cls_indexs, question_text, answers_text,word_dict = prepare_data(data_path)
+        print(f'question is:{user_questions}')
+        questions = bilstm(user_questions)
+        q_a_set = build_bilstm_qa(questions, question_text, answers_text)
+        text_data_classified = preprocessor.get_sequence_tokens_with_turn(q_a_set, word_dict)
+        indexs, answers = predict.test(conf, model, text_data_classified)
+        answer_data = q_a_set[indexs]
+        this_answer = answer_data.split('\t')[-1]
+        print(f'answer is: {this_answer}')
 
 ######## start test#############
 #structure_data_file = data_path + "all_classified_data.txt"
