@@ -5,4 +5,5 @@
 
 #CUDA_VISIBLE_DEVICES=0 python main.py
 
-CUDA_VISIBLE_DEVICES=0 python dam_model.py
+#CUDA_VISIBLE_DEVICES=0 python dam_model.py
+python dam_model.py
