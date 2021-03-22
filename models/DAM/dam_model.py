@@ -24,7 +24,7 @@ import preprocess.preprocessor as preprocessor
 import preprocess.generate_data as generate_data
 from random import sample
 sys.path.append("../")
-import Bilstm.bilstm as bilstm
+# import Bilstm.bilstm as bilstm
 
 home_folder = "/home/ally/github/chatbot/"
 result_path = home_folder+"models/DAM/results/"
