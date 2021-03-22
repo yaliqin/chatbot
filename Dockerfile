@@ -24,6 +24,7 @@ COPY data/* ./data/
 RUN mkdir -p preprocess
 COPY preprocess/* ./preprocess/
 
+
 #ENTRYPOINT [ "python3" ]
 
-CMD ["CUDA_VISIBLE_DEVICES=0 python","models/DAM/dam_model.py" ]
+CMD ["sh","-c","models/DAM/run.sh" ]
