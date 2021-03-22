@@ -90,7 +90,7 @@ def prepare_data(data_path):
     return cls_indexs, question_text, answers_text,word_dict
 
 
-def prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict,key_words_list):
+def prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict,key_words_list,model):
     all_data = []
     for index in question_number:
         #    print(f'the {index} question is:{question_text[index]}')
@@ -165,7 +165,7 @@ def dam_output(input,SINGLEMODEL):
             if question == input:
                 break
         question_number = [number]
-        indexs = prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict,key_words_list)
+        indexs = prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict,key_words_list,model)
         output = pop_answers(indexs,question_text,question_number)
     else:
         cls_indexs, question_text, answers_text, word_dict = prepare_data(data_path)

@@ -2,7 +2,8 @@
 import utils.reader as reader
 import models.net as net
 import sys
-sys.path.append("../../")
+sys.path.append("/home/ally/github/chatbot")
+# print(sys.path)
 import preprocess.preprocessor as preprocessor
 import os
 import time
