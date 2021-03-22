@@ -103,11 +103,10 @@ def prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,wor
         for item in negative_answers:
             all_data.append(item)
     #      print(item)
-
     text_data_classified = preprocessor.get_sequence_tokens_with_turn(all_data, word_dict)
     indexs, answers = predict.test(conf, model, text_data_classified)
     print(indexs)
-    return indexs
+    return indexs,all_data
 
 def find_question_answer(question, question_text,answers_text):
     for index,value in enumerate(question_text):
@@ -130,7 +129,7 @@ def build_bilstm_qa(questions,question_text,answers_text):
 
 
 
-def pop_answers(indexs,question_text,question_number):
+def pop_answers(indexs,question_text,question_number,all_data):
     ind = 0
     answers =[]
     for index, number in enumerate(question_number):
@@ -165,8 +164,8 @@ def dam_output(input,SINGLEMODEL):
             if question == input:
                 break
         question_number = [number]
-        indexs = prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict,key_words_list,model)
-        output = pop_answers(indexs,question_text,question_number)
+        indexs,all_data = prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict,key_words_list,model)
+        output = pop_answers(indexs,question_text,question_number,all_data)
     else:
         cls_indexs, question_text, answers_text, word_dict = prepare_data(data_path)
         print(f'question is:{input}')
