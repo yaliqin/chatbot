@@ -32,10 +32,10 @@ result_path = home_folder+"models/DAM/results/"
 data_path =  home_folder+"data/"
 conf = {
     #"data_path": "./data/ubuntu/data.pkl",
-    "data_path": data_path+"classified_split.pickle",
-    "train_path":data_path+"classified_train.pickle",
-    "valid_path":data_path+"classified_valid.pickle",
-    "test_path":data_path+"classified_test.pickle",
+    "data_path": data_path+"classified_split_2turn.pickle",
+    "train_path":data_path+"classified_train_2turn.pickle",
+    "valid_path":data_path+"classified_valid_2turn.pickle",
+    "test_path":data_path+"classified_test_2turn.pickle",
     #"save_path": "./output/ubuntu/temp/",
     # "word_emb_init": "./data/word_embedding.pkl",
     "word_emb_init":None,
@@ -150,99 +150,96 @@ def pop_answers(indexs,question_text,question_number):
 
 model = net.Net(conf)
 print(conf)
-# train.train(conf, model)
-
-test_questions=[""]
-
-if MULTI_TIMES == 1:
-
-else:
-    if MODEL_INTEGRATION == 0:
-        key_words_list = ["input classification", "output", "context"]
-        question_number = [30,32,33,60,62,63, 8,9,10,92,93,94]
-        cls_indexs, question_text, answers_text,word_dict = prepare_data(data_path)
-        indexs = prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict)
-        pop_answers(indexs,question_text,question_number)
-    else:
-        cls_indexs, question_text, answers_text,word_dict = prepare_data(data_path)
-        print(f'question is:{user_questions}')
-        questions = bilstm(user_questions)
-        q_a_set = build_bilstm_qa(questions, question_text, answers_text)
-        text_data_classified = preprocessor.get_sequence_tokens_with_turn(q_a_set, word_dict)
-        indexs, answers = predict.test(conf, model, text_data_classified)
-        answer_data = q_a_set[indexs]
-        this_answer = answer_data.split('\t')[-1]
-        print(f'answer is: {this_answer}')
-
-######## start test#############
-#structure_data_file = data_path + "all_classified_data.txt"
-#corpus2 = preprocessor.read_txt_file(structure_data_file)
-#test_data = []
-#test_data_index = 0
-#for index in question_number:
-#    start = index * 10
-#    end = index*10+10
-#    test_data[test_data_index:test_data_index+10]=corpus2[start:end]
-#    test_data_index +=10
-#    # test_data.append(corpus2[start:end])
-##print(f'all_data is {all_data}')
-#print("*********************************************\n")
+train.train(conf, model)
 #
-##    #print(f'the question of {item} question is:{answers_text[item]}')
-##
-##    texts = preprocessor.get_texts(all_data)
-#text_data_classified = preprocessor.get_sequence_tokens_with_turn(test_data,word_dict)
-##print(text_data_classified)
-##    question = predict.build_question(positive_corpus, item, word_dict)
-##    all_positive_data = predict.generate_data(question, all_positive_answers, word_dict)
-##
-#indexs,answers = predict.test(conf, model, text_data_classified)
-#print(indexs)
-#ind = 0
-#for index,number in enumerate(question_number):
-#    print(f'question number is: {number}')
-#    print(f'question is: {question_text[number]}')
-#    print(f'answer index is {indexs[index]} in the classification list')
-#    idx_in_all = ind*10+indexs[index]
-#    answer_data = test_data[idx_in_all]
-#    this_answer = answer_data.split('\t')[-1]
-#    print(f'anwer is: {this_answer}')
-#    ind += 1
+# test_questions=[""]
 #
-######## end test#############
-
-#question_number = [60]
-#all_positive_answers = predict.build_candidate_answers(positive_corpus, word_dict)
-#
-# all_data = []
-# for index in question_number:
-# #    print(f'the {index} question is:{question_text[index]}')
-#     question = question_text[index]
-#     positive_answer, negative_answers, negative_answers_index = generate_data.generate_candidate_answers(question, key_words_list, cls_indexs, question_text, answers_text)
-#     negative_answers_index.insert(0, index)
-#     all_data.append(positive_answer[0])
-# #    print(positive_answer[0])
-#     for item in negative_answers:
-#       all_data.append(item)
-# #      print(item)
-#
-# text_data_classified = preprocessor.get_sequence_tokens_with_turn(all_data,word_dict)
-# indexs,answers = predict.test(conf, model, text_data_classified)
-# print(indexs)
-# ind = 0
-# for index,number in enumerate(question_number):
-#     print(f'question number is: {number}')
-#     print(f'question is: {question_text[number]}')
-#     print(f'answer index is {indexs[index]} in the classification list')
-#     idx_in_all = ind*10+indexs[index]
-#     print(idx_in_all)
-#     answer_data = all_data[idx_in_all]
+# if MODEL_INTEGRATION == 0:
+#     key_words_list = ["input classification", "output", "context"]
+#     question_number = [30,32,33,60,62,63, 8,9,10,92,93,94]
+#     cls_indexs, question_text, answers_text,word_dict = prepare_data(data_path)
+#     indexs = prepare_q_a_data(question_number,cls_indexs, question_text, answers_text,word_dict)
+#     pop_answers(indexs,question_text,question_number)
+# else:
+#     cls_indexs, question_text, answers_text,word_dict = prepare_data(data_path)
+#     print(f'question is:{user_questions}')
+#     questions = bilstm(user_questions)
+#     q_a_set = build_bilstm_qa(questions, question_text, answers_text)
+#     text_data_classified = preprocessor.get_sequence_tokens_with_turn(q_a_set, word_dict)
+#     indexs, answers = predict.test(conf, model, text_data_classified)
+#     answer_data = q_a_set[indexs]
 #     this_answer = answer_data.split('\t')[-1]
-#     print(f'anwer is: {this_answer}')
-#     ind += 1
+#     print(f'answer is: {this_answer}')
 #
+# ######## start test#############
+# #structure_data_file = data_path + "all_classified_data.txt"
+# #corpus2 = preprocessor.read_txt_file(structure_data_file)
+# #test_data = []
+# #test_data_index = 0
+# #for index in question_number:
+# #    start = index * 10
+# #    end = index*10+10
+# #    test_data[test_data_index:test_data_index+10]=corpus2[start:end]
+# #    test_data_index +=10
+# #    # test_data.append(corpus2[start:end])
+# ##print(f'all_data is {all_data}')
+# #print("*********************************************\n")
+# #
+# ##    #print(f'the question of {item} question is:{answers_text[item]}')
+# ##
+# ##    texts = preprocessor.get_texts(all_data)
+# #text_data_classified = preprocessor.get_sequence_tokens_with_turn(test_data,word_dict)
+# ##print(text_data_classified)
+# ##    question = predict.build_question(positive_corpus, item, word_dict)
+# ##    all_positive_data = predict.generate_data(question, all_positive_answers, word_dict)
+# ##
+# #indexs,answers = predict.test(conf, model, text_data_classified)
+# #print(indexs)
+# #ind = 0
+# #for index,number in enumerate(question_number):
+# #    print(f'question number is: {number}')
+# #    print(f'question is: {question_text[number]}')
+# #    print(f'answer index is {indexs[index]} in the classification list')
+# #    idx_in_all = ind*10+indexs[index]
+# #    answer_data = test_data[idx_in_all]
+# #    this_answer = answer_data.split('\t')[-1]
+# #    print(f'anwer is: {this_answer}')
+# #    ind += 1
+# #
+# ######## end test#############
 #
-##
-## # test.test(conf, model)
-#
-#
+# #question_number = [60]
+# #all_positive_answers = predict.build_candidate_answers(positive_corpus, word_dict)
+# #
+# # all_data = []
+# # for index in question_number:
+# # #    print(f'the {index} question is:{question_text[index]}')
+# #     question = question_text[index]
+# #     positive_answer, negative_answers, negative_answers_index = generate_data.generate_candidate_answers(question, key_words_list, cls_indexs, question_text, answers_text)
+# #     negative_answers_index.insert(0, index)
+# #     all_data.append(positive_answer[0])
+# # #    print(positive_answer[0])
+# #     for item in negative_answers:
+# #       all_data.append(item)
+# # #      print(item)
+# #
+# # text_data_classified = preprocessor.get_sequence_tokens_with_turn(all_data,word_dict)
+# # indexs,answers = predict.test(conf, model, text_data_classified)
+# # print(indexs)
+# # ind = 0
+# # for index,number in enumerate(question_number):
+# #     print(f'question number is: {number}')
+# #     print(f'question is: {question_text[number]}')
+# #     print(f'answer index is {indexs[index]} in the classification list')
+# #     idx_in_all = ind*10+indexs[index]
+# #     print(idx_in_all)
+# #     answer_data = all_data[idx_in_all]
+# #     this_answer = answer_data.split('\t')[-1]
+# #     print(f'anwer is: {this_answer}')
+# #     ind += 1
+# #
+# #
+# ##
+# ## # test.test(conf, model)
+# #
+# #
